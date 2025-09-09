@@ -1,3 +1,5 @@
+// src/validation/register.validation.js
+
 const Joi = require("joi");
 
 const validateRegisterWithJoi = (userData) => {
@@ -24,7 +26,7 @@ const validateRegisterWithJoi = (userData) => {
     password: Joi.string()
       .min(7)
       .ruleset.regex(
-         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_\-+=\[{\]}|\\:;'",.<>/?`~]).{7,}$/
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_\-+=\[{\]}|\\:;'",.<>/?`~]).{7,}$/
       )
       .rule({
         message:

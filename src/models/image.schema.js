@@ -1,3 +1,5 @@
+// src/models/image.schema.js
+
 const mongoose = require("mongoose");
 const { DEFAULT_VALIDATION, URL } = require("../helpers/mongoose-validators");
 

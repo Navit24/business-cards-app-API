@@ -1,3 +1,5 @@
+// src/middlewares/auth.middleware.js
+
 const { verifyToken } = require("../helpers/auth-token");
 const { errorHandler } = require("../utils/error-handler");
 const config = require("config");

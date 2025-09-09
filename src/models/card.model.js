@@ -1,3 +1,5 @@
+// src/models/card.model.js
+
 const mongoose = require("mongoose");
 const Address = require("./address.schema");
 const Image = require("./image.schema");

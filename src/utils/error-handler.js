@@ -1,3 +1,5 @@
+// src/utils/error-handler.js
+
 const chalk = require("chalk");
 
 // Generic error handler

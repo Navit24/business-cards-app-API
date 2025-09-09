@@ -1,3 +1,5 @@
+// src/helpers/auth-token.js
+
 const jwt = require("jsonwebtoken");
 const config = require("config");
 
