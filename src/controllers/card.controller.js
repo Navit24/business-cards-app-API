@@ -12,8 +12,10 @@ const {
   updateCard,
   likeCard,
   deleteCard,
+  changeCardBizNumber,
 } = require("../services/card.service");
 const authService = require("../middlewares/auth.middleware");
+const { validateCardNumber } = require("../validation/validators");
 
 // Route to get all cards
 router.get("/", async (req, res) => {
@@ -108,6 +110,28 @@ router.patch("/:id", authService, async (req, res) => {
     const userId = req.user._id;
     const likedCard = await likeCard(id, userId);
     return res.send(likedCard);
+  } catch (error) {
+    return errorHandler(res, error.status || 500, error.message);
+  }
+});
+
+// Admin-only route to change card bizNumber
+router.patch("/:id/number", authService, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { isAdmin } = req.user;
+    if (!isAdmin) {
+      return errorHandler(res, 403, "Access denied. Admin only.");
+    }
+
+    const { error } = validateCardNumber(req.body);
+    if (error) {
+      return errorHandler(res, 400, error.message);
+    }
+
+    const { bizNumber } = req.body;
+    const updated = await changeCardBizNumber(id, bizNumber);
+    return res.send(updated);
   } catch (error) {
     return errorHandler(res, error.status || 500, error.message);
   }

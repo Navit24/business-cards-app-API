@@ -38,8 +38,38 @@ const login = async ({ email, password }) => {
       const user = await UserModel.findOne({ email });
       if (!user) throw new Error("invalid email or password");
 
+      // If account is locked and lock time hasn't passed
+      if (user.lockUntil && user.lockUntil.getTime() > Date.now()) {
+        const err = new Error("Account locked. try again later.");
+        err.status = 423;
+        throw err;
+      }
+
       const validPassword = compareUserPassword(password, user.password);
-      if (!validPassword) throw new Error("invalid email or password");
+      if (!validPassword) {
+        user.loginAttempts = (user.loginAttempts || 0) + 1;
+
+        if (user.loginAttempts >= 3) {
+          user.lockUntil = new Date(Date.now() + 24 * 60 * 60 * 1000);
+
+          user.loginAttempts = 0;
+          user = await user.save();
+          const err = new Error(
+            "Account locked for 24 hours due to failed attempts."
+          );
+          err.status = 423;
+          throw err;
+        }
+        user = await user.save();
+        const err = new Error("invalid email or password");
+        err.status = 400;
+        throw err;
+      }
+
+      // success: reset attempt and lock
+      user.loginAttempts = 0;
+      user.lockUntil = null;
+      user = await user.save();
 
       const token = generateAuthToken(user);
       return Promise.resolve(token);

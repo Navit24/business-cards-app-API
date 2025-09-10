@@ -9,6 +9,8 @@ const {
   update,
   like,
   remove,
+  findByBizNumber,
+  updateBizNumber,
 } = require("../dal/card.dal");
 const { validateCard } = require("../validation/validators");
 const normalizedCard = require("../helpers/normalize-card");
@@ -84,6 +86,23 @@ const updateCard = async (cardId, rawCard) => {
   }
 };
 
+// Service function to change only the bizNumber (admin only at controller)
+const changeCardBizNumber = async (cardId, newBizNumber) => {
+  try {
+    // ensure not taken
+    const existing = await findByBizNumber(newBizNumber);
+    if (existing && String(existing._id) !== String(cardId)) {
+      const error = new Error("Card number already exists");
+      error.status = 409;
+      return Promise.reject(error);
+    }
+    const updated = await updateBizNumber(cardId, newBizNumber);
+    return Promise.resolve(updated);
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};
+
 // Service function to like a card by ID
 const likeCard = async (cardId, userId) => {
   try {
@@ -113,4 +132,5 @@ module.exports = {
   updateCard,
   likeCard,
   deleteCard,
+  changeCardBizNumber,
 };

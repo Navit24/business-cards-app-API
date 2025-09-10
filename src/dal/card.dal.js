@@ -108,6 +108,39 @@ const update = async (cardId, normalizedCard) => {
   return Promise.resolve("update card not in mongoDB");
 };
 
+// Function to find a card by bizNumber
+const findByBizNumber = async (bizNumber) => {
+  if (DB === "MONGODB") {
+    try {
+      const card = await CardModel.findOne({ bizNumber });
+      return Promise.resolve(card);
+    } catch (error) {
+      error.status = 400;
+      return handleBadRequest("Mongoose", error);
+    }
+  }
+  return Promise.resolve("find by bizNumber not in mongoDB");
+};
+
+// Function to update only the bizNumber of a card
+const updateBizNumber = async (cardId, newBizNumber) => {
+  if (DB === "MONGODB") {
+    try {
+      let card = await CardModel.findByIdAndUpdate(
+        cardId,
+        { bizNumber: newBizNumber },
+        { new: true, runValidators: true }
+      );
+      if (!card) throw new Error("Could not find card with the given ID");
+      return Promise.resolve(card);
+    } catch (error) {
+      error.status = 404;
+      return handleBadRequest("Mongoose", error);
+    }
+  }
+  return Promise.resolve("update bizNumber not in mongoDB");
+};
+
 // Function to like or unlike a card
 const like = async (cardId, userId) => {
   if (DB === "MONGODB") {
@@ -164,4 +197,6 @@ module.exports = {
   update,
   like,
   remove,
+  findByBizNumber,
+  updateBizNumber,
 };
