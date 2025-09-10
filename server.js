@@ -12,6 +12,7 @@ const {
   generateInitialCards,
   generateInitialUsers,
 } = require("./src/mocks/initial-data-service");
+const chalk = require("chalk");
 
 //middleware app level
 app.use(cors);
@@ -29,7 +30,7 @@ app.use((err, req, res, next) => {
 //start server
 const PORT = config.get("PORT");
 app.listen(PORT, () => {
-  console.log(`init server on: http://localhost:${PORT}`);
+  console.log(chalk.cyanBright(`init server on: http://localhost:${PORT}`));
   connectToDb();
   generateInitialCards();
   generateInitialUsers();

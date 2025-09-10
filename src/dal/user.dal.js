@@ -36,7 +36,11 @@ const login = async ({ email, password }) => {
   if (DB === "MONGODB") {
     try {
       const user = await UserModel.findOne({ email });
-      if (!user) throw new Error("invalid email or password");
+      if (!user) {
+        const err = new Error("Invalid email or password");
+        err.status = 400;
+        throw err;
+      }
 
       // If account is locked and lock time hasn't passed
       if (user.lockUntil && user.lockUntil.getTime() > Date.now()) {
@@ -45,22 +49,22 @@ const login = async ({ email, password }) => {
         throw err;
       }
 
-      const validPassword = compareUserPassword(password, user.password);
+      const validPassword = await compareUserPassword(password, user.password);
       if (!validPassword) {
         user.loginAttempts = (user.loginAttempts || 0) + 1;
 
         if (user.loginAttempts >= 3) {
           user.lockUntil = new Date(Date.now() + 24 * 60 * 60 * 1000);
-
           user.loginAttempts = 0;
-          user = await user.save();
+          await user.save();
+
           const err = new Error(
             "Account locked for 24 hours due to failed attempts."
           );
           err.status = 423;
           throw err;
         }
-        user = await user.save();
+        await user.save();
         const err = new Error("invalid email or password");
         err.status = 400;
         throw err;
@@ -69,12 +73,12 @@ const login = async ({ email, password }) => {
       // success: reset attempt and lock
       user.loginAttempts = 0;
       user.lockUntil = null;
-      user = await user.save();
+      await user.save();
 
       const token = generateAuthToken(user);
       return Promise.resolve(token);
     } catch (error) {
-      error.status = 400;
+      error.status = error.status || 400;
       return handleBadRequest("Mongoose", error);
     }
   }
@@ -99,7 +103,11 @@ const find = async () => {
 const findOne = async (userId) => {
   if (DB === "MONGODB") {
     try {
-      let user = await UserModel.findById(userId, { password: 0, __v: 0 });
+      let user = await UserModel.findById(userId, {
+        password: 0,
+        __v: 0,
+        isAdmin: 0,
+      });
       if (!user) throw new Error("User not found in DB");
       return Promise.resolve(user);
     } catch (error) {
@@ -132,13 +140,15 @@ const update = async (userId, normalizedUser) => {
 const changeIsBizStatus = async (userId) => {
   if (DB === "MONGODB") {
     try {
-      let user = await UserModel.findById(userId);
+      let user = await UserModel.findById(userId, {
+        password: 0,
+        isAdmin: 0,
+      });
       if (!user) throw new Error("Could not find user with the given ID");
 
       user.isBusiness = !user.isBusiness;
       user = await user.save();
 
-      user = lodash.pick(user, ["email", "_id", "isBusiness"]);
       return Promise.resolve(user);
     } catch (error) {
       error.status = 401;
