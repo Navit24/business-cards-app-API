@@ -24,7 +24,7 @@ app.use(router);
 
 //error handler middleware
 app.use((err, req, res, next) => {
-  errorHandler(res, err.status || 500, err.massage);
+  errorHandler(res, err.status || 500, err.message);
 });
 
 //start server

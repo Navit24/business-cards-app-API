@@ -1,3 +1,5 @@
+// src/utils/error-logger.js
+
 const fs = require("fs");
 const { date } = require("joi");
 const path = require("path");
@@ -10,7 +12,7 @@ if (!fs.existsSync(logsDir)) {
   fs.mkdirSync(logsDir);
 }
 
-const logError = (status, massage) => {
+const logError = (status, message) => {
   if (status < 400) return;
 
   const now = new Date();
@@ -20,7 +22,7 @@ const logError = (status, massage) => {
   const filePath = path.join(logsDir, fileName);
 
   // Row content
-  const logLine = `[${now.toISOString()}] STATUS: ${status}  | MESSAGE: ${massage}\n`;
+  const logLine = `[${now.toISOString()}] STATUS: ${status}  | MESSAGE: ${message}\n`;
 
   // Add to file
   fs.appendFileSync(filePath, logLine, "utf-8");
