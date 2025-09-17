@@ -1,0 +1,487 @@
+{
+	"info": {
+		"_postman_id": "73992ee0-a456-46e3-8502-0dc707b8d2ad",
+		"name": "W270624ER",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37301774"
+	},
+	"item": [
+		{
+			"name": "cards",
+			"item": [
+				{
+					"name": "get all cards",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/cards",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all my cards",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGMxOTAxNTBhNDIxMmEyYmEzM2FmMmMiLCJpc0FkbWluIjpmYWxzZSwiaXNCdXNpbmVzcyI6dHJ1ZSwiaWF0IjoxNzU3NTI5MjM4LCJleHAiOjE3NTc1NDM2Mzh9.Yi-IM_-UPmUIC9DreRZum7hCuK1liVCC67X8Q6n2IeA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/cards/my-cards",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"cards",
+								"my-cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get card by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/cards/68c1a16f819b054bcec8a5d3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"cards",
+								"68c1a16f819b054bcec8a5d3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get my liked cards",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGMxOTAxNTBhNDIxMmEyYmEzM2FmMmMiLCJpc0FkbWluIjpmYWxzZSwiaXNCdXNpbmVzcyI6dHJ1ZSwiaWF0IjoxNzU3NTI4Njk4LCJleHAiOjE3NTc1NDMwOTh9.1U8kl4JVY7GaTex6ZziQPqQNDyMCG_XkAt3bHukNwf4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"Business@gmail.com\",\r\n  \"password\": \"Aa1234!\"\r\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/cards/liked-cards",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"cards",
+								"liked-cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create new card",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGMxOTAxNTBhNDIxMmEyYmEzM2FmMmMiLCJpc0FkbWluIjpmYWxzZSwiaXNCdXNpbmVzcyI6dHJ1ZSwiaWF0IjoxNzU3NTI5Njc0LCJleHAiOjE3NTc1NDQwNzR9.InpRZj4zcKh5MNwq0MgfysXv-lvVkaRhj-6ubKR8Jp0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"test123\",\r\n    \"subtitle\": \"testing\",\r\n    \"description\": \"testing 123\",\r\n    \"phone\": \"050-0000000\",\r\n    \"email\": \"testing@gmail.com\",\r\n    \"web\": \"https://www.test.co.il\",\r\n    \"image\":{\r\n        \"url\": \"\",\r\n        \"alt\": \"\"\r\n    },\r\n    \"address\": {\r\n        \"state\": \"\",\r\n        \"country\": \"Israel\",\r\n        \"city\": \"Tel Aviv\",\r\n        \"street\": \"Yona Hanavi\",\r\n        \"houseNumber\": 3,\r\n        \"zip\": \"0\"\r\n    }\r\n   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/cards",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update card",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGMxYTE2ZjgxOWIwNTRiY2VjOGE1ZDkiLCJpc0FkbWluIjp0cnVlLCJpc0J1c2luZXNzIjp0cnVlLCJpYXQiOjE3NTc1MzExMjgsImV4cCI6MTc1NzU0NTUyOH0.7iMnT7tuROmXCZIP3reaYARIl0YirnDkc1fDzeKa_DY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"test123\",\r\n    \"subtitle\": \"testing\",\r\n    \"description\": \"testing 123\",\r\n    \"phone\": \"050-0000000\",\r\n    \"email\": \"testing@gmail.com\",\r\n    \"web\": \"https://www.test.co.il\",\r\n    \"image\":{\r\n        \"url\": \"\",\r\n        \"alt\": \"\"\r\n    },\r\n    \"address\": {\r\n        \"state\": \"\",\r\n        \"country\": \"Israel\",\r\n        \"city\": \"Tel Aviv\",\r\n        \"street\": \"Yona Hanavi\",\r\n        \"houseNumber\": 3,\r\n        \"zip\": \"0\"\r\n    }\r\n   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/cards/68c1c70531e6a594725cfbb1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"cards",
+								"68c1c70531e6a594725cfbb1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "like/unlike a card",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGMxOGZkMzBhNDIxMmEyYmEzM2FmMjUiLCJpc0FkbWluIjpmYWxzZSwiaXNCdXNpbmVzcyI6ZmFsc2UsImlhdCI6MTc1NzUzMTM4OCwiZXhwIjoxNzU3NTQ1Nzg4fQ.KRvLflq2PxAlo5xFDDtWe79m4jZMiXzJ082XUc5HzlM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/cards/68c1c70531e6a594725cfbb1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"cards",
+								"68c1c70531e6a594725cfbb1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete card",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGMxYTE2ZjgxOWIwNTRiY2VjOGE1ZDkiLCJpc0FkbWluIjp0cnVlLCJpc0J1c2luZXNzIjp0cnVlLCJpYXQiOjE3NTc1MzE0MzEsImV4cCI6MTc1NzU0NTgzMX0.w2ATt0_uXVROeUVK38sNgMyfdBA3q7Sggryo6bfk9ac",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/cards/68c1a16f819b054bcec8a5d3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"cards",
+								"68c1a16f819b054bcec8a5d3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "patch card's biz number",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGMxYTE2ZjgxOWIwNTRiY2VjOGE1ZDkiLCJpc0FkbWluIjp0cnVlLCJpc0J1c2luZXNzIjp0cnVlLCJpYXQiOjE3NTc1MzMxMDAsImV4cCI6MTc1NzU0NzUwMH0.rWdEfIjTfcjH2J16f8LTXT8hFetUxN7V-_z57YZaP48",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"bizNumber\":1234567}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/cards/68c1c65131e6a594725cfbab/number",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"cards",
+								"68c1c65131e6a594725cfbab",
+								"number"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": {\r\n    \"first\": \"first\",\r\n    \"middle\": \"\",\r\n    \"last\": \"last\"\r\n  },\r\n  \"phone\": \"050-0000000\",\r\n  \"email\": \"testing2@gmail.com\",\r\n  \"password\": \"Aa1234!\",\r\n  \"image\": {\r\n    \"url\": \"\",\r\n    \"alt\": \"\"\r\n  },\r\n  \"address\": {\r\n    \"state\": \"\",\r\n    \"country\": \"Israel\",\r\n    \"city\": \"tel-aviv\",\r\n    \"street\": \"magnive\",\r\n    \"houseNumber\": 5,\r\n    \"zip\": 0\r\n  },\r\n  \"isBusiness\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"Business@gmail.com\",\r\n  \"password\": \"Aa1234!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGMxYTE2ZjgxOWIwNTRiY2VjOGE1ZDkiLCJpc0FkbWluIjp0cnVlLCJpc0J1c2luZXNzIjp0cnVlLCJpYXQiOjE3NTc1MjA4MzUsImV4cCI6MTc1NzUzNTIzNX0.q40N4Wra76yUu-wXP6F93C8nYK3VHuXwtx7wNm_rkHI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGMxYTE2ZjgxOWIwNTRiY2VjOGE1ZDkiLCJpc0FkbWluIjp0cnVlLCJpc0J1c2luZXNzIjp0cnVlLCJpYXQiOjE3NTc1MjA4MzUsImV4cCI6MTc1NzUzNTIzNX0.q40N4Wra76yUu-wXP6F93C8nYK3VHuXwtx7wNm_rkHI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/users/68c190150a4212a2ba33af2c",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"68c190150a4212a2ba33af2c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "patch user's business status",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGMxYTE2ZjgxOWIwNTRiY2VjOGE1ZDkiLCJpc0FkbWluIjp0cnVlLCJpc0J1c2luZXNzIjp0cnVlLCJpYXQiOjE3NTc1MjA4MzUsImV4cCI6MTc1NzUzNTIzNX0.q40N4Wra76yUu-wXP6F93C8nYK3VHuXwtx7wNm_rkHI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/68c190150a4212a2ba33af2c",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"68c190150a4212a2ba33af2c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGMxYTE2ZjgxOWIwNTRiY2VjOGE1ZDkiLCJpc0FkbWluIjp0cnVlLCJpc0J1c2luZXNzIjp0cnVlLCJpYXQiOjE3NTc1MjI5ODgsImV4cCI6MTc1NzUzNzM4OH0.ev2Pu58hrR46MOWTVDrpHEc1M7gM2UWUmkQPOX9OaK4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n      \"name\": { \"first\": \"business\", \"last\": \"user\" },\r\n      \"isBusiness\": true,\r\n      \"phone\": \"050-0000000\",\r\n      \"email\": \"business@gmail.com\",\r\n      \"address\": {\r\n        \"country\": \"israel\",\r\n        \"city\": \"tel-aviv\",\r\n        \"street\": \"magnive\",\r\n        \"houseNumber\": \"5\"\r\n      },\r\n      \"image\": { \"url\": \"\", \"alt\": \"\" }\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/68c190150a4212a2ba33af2c",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"68c190150a4212a2ba33af2c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGMxYTE2ZjgxOWIwNTRiY2VjOGE1ZDkiLCJpc0FkbWluIjp0cnVlLCJpc0J1c2luZXNzIjp0cnVlLCJpYXQiOjE3NTc1MjA4MzUsImV4cCI6MTc1NzUzNTIzNX0.q40N4Wra76yUu-wXP6F93C8nYK3VHuXwtx7wNm_rkHI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/users/68c1ae76d6f9414bb0b189ba",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"68c1ae76d6f9414bb0b189ba"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8181",
+			"type": "string"
+		}
+	]
+}
